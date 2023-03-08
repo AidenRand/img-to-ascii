@@ -5,7 +5,8 @@ import PIL.Image
 
 root = Tk()
 root.title('ITOA')
-root.geometry('700x700')
+root.geometry('900x900')
+root.config(bg='#1e1e1e')
 
 def select_file():
     filetypes = (
@@ -22,18 +23,16 @@ def select_file():
     return filename
 
 def convert_img():
-    img_flag = True
     file_path = select_file()
 
     try:
         img = PIL.Image.open(file_path)
-        img_flag = True
     except:
         print(file_path, 'File not found')
 
     width, height = img.size
     aspect_ratio = height/width
-    new_width = 1000
+    new_width = 80
     new_height = aspect_ratio * new_width * 0.55
     img = img.resize((new_width, int(new_height)))
 
@@ -57,11 +56,16 @@ def convert_img():
                    for index in range(0, new_pixels_count, new_width)]
     ascii_image = "\n".join(ascii_image)
 
-    with open("ascii_image.txt", 'w') as f:
+    with open("ascii_image.txt", 'w+') as f:
         f.write(ascii_image)
+
+    # create tkinter text area to hold ascii
+    ascii_box = Text(root,height=100, bg='#1e1e1e', fg='white', highlightthickness=0)
+    ascii_box.place(x=150, y=80)
+    ascii_box.insert(INSERT, ascii_image)
 
 buttonFnt = font.Font(size=18)
 addFile = Button(root, text='Add Image', font=buttonFnt, command=convert_img)
-addFile.place(x=275, y = 20)
+addFile.place(x=365, y=10)
 
 root.mainloop()
