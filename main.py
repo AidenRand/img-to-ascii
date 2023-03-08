@@ -18,9 +18,9 @@ def select_file():
         filetypes = filetypes
     )
 
-    print(filename)
+    return filename
 
-def print_file():
+def convert_img():
     select_file()
 
 buttonFnt = font.Font(size=18)
