@@ -59,10 +59,14 @@ def convert_img():
     with open("ascii_image.txt", 'w+') as f:
         f.write(ascii_image)
 
+    ls = Label(root, width=500, height=500, bg='#1e1e1e',
+               fg='white', highlightthickness=0 )
+    ls.place(x=-10, y=80)
     # create tkinter text area to hold ascii
-    ascii_box = Text(root,height=100, bg='#1e1e1e', fg='white', highlightthickness=0)
+    ascii_box = Text(root, width=80, height=aspect_ratio * new_width * 0.55, 
+                     bg='#1e1e1e', fg='white', highlightthickness=0)
     ascii_box.place(x=150, y=80)
-    ascii_box.insert(INSERT, ascii_image)
+    ascii_box.insert(INSERT,  ascii_image)
 
 buttonFnt = font.Font(size=18)
 addFile = Button(root, text='Add Image', font=buttonFnt, command=convert_img)
